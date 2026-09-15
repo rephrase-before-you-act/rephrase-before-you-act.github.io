@@ -5,28 +5,97 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Rephrase Before You Act</title>
 <style>
-  body { font-family: Georgia, 'Times New Roman', serif; max-width: 46rem;
-         margin: 4rem auto; padding: 0 1.2rem; color: #222; line-height: 1.55; }
+  body { font-family: Georgia, 'Times New Roman', serif; max-width: 52rem;
+         margin: 3.5rem auto; padding: 0 1.2rem; color: #222; line-height: 1.6; }
   h1 { font-size: 1.7rem; margin-bottom: 0.2rem; }
+  h2 { font-size: 1.25rem; margin-top: 2.6rem; border-bottom: 1px solid #e2ddd0;
+       padding-bottom: .3rem; }
   .sub { font-size: 1.05rem; color: #444; margin-top: 0; }
-  .anon { color: #666; font-style: italic; margin: 1.4rem 0; }
+  .anon { color: #666; font-style: italic; margin: 1.2rem 0; }
   .soon { background: #f6f4ee; border: 1px solid #e2ddd0; border-radius: 6px;
-          padding: 0.9rem 1.1rem; margin: 1.6rem 0; }
+          padding: 0.8rem 1.1rem; margin: 1rem 0; color: #555; }
+  img { max-width: 100%; display: block; margin: 1rem auto; }
+  .row { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .row > div { flex: 1 1 20rem; }
+  .cap { font-size: .88rem; color: #555; margin-top: -0.4rem; }
+  .pair { font-size: .95rem; margin: .5rem 0; }
+  .good { color: #3F6B52; font-weight: bold; }
+  .bad { color: #A94E4E; font-weight: bold; }
+  li { margin-bottom: .7rem; }
+  .rules li { font-style: italic; }
   a { color: #7a4d0b; }
-  footer { margin-top: 3rem; font-size: 0.85rem; color: #888; }
+  footer { margin-top: 3rem; font-size: .85rem; color: #888; }
 </style>
 </head>
 <body>
 <h1>Rephrase Before You Act</h1>
 <p class="sub">Characterizing and Mitigating Language Sensitivity in Vision-Language-Action Models</p>
 <p class="anon">Anonymous authors &middot; under review</p>
-<ul>
-<li><a href="rules.html">Snapshots from the distilled rulebooks</a></li>
-<li><a href="survey/index.html">The human-phrasing survey (static replica, with task clips)</a></li>
+
+<h2>1&ensp;Phrasing sensitivity exists</h2>
+<p>A one-word edit to an instruction can move a VLA's success rate by tens of
+points. Measured over the same fixed scene layouts with common random
+seeds, so the wording is the only difference:</p>
+<p class="pair"><span class="good">69%</span> &ldquo;purple eggplant goes on the sponge&rdquo;
+&nbsp;vs.&nbsp; <span class="bad">8%</span> &ldquo;eggplant goes on the sponge&rdquo;</p>
+<p class="pair"><span class="good">69%</span> &ldquo;put the pepsi on the plate&rdquo;
+&nbsp;vs.&nbsp; <span class="bad">25%</span> &ldquo;put the Pepsi on the plate&rdquo;</p>
+<p class="pair"><span class="good">100%</span> &ldquo;fire up the stove&rdquo;
+&nbsp;vs.&nbsp; <span class="bad">6%</span> &ldquo;turn on the stove&rdquo;</p>
+<div class="soon">Side-by-side rollout videos of these pairs are coming shortly.</div>
+
+<h2>2&ensp;Measuring it: single-edit swings and oracle headroom</h2>
+<p>Every statistically significant single-edit swing our searches found
+(two-proportion tests; dots are phrases of one set, the filled dot is the
+best phrasing):</p>
+<div class="row">
+  <div><img src="assets/swings_bridge.png" alt="Bridge swings">
+       <p class="cap">&pi;<sub>0</sub> on SIMPLER Bridge &mdash; 26 sets.</p></div>
+  <div><img src="assets/swings_libero.png" alt="LIBERO swings">
+       <p class="cap">&pi;<sub>0.5</sub> on LIBERO &mdash; 15 sets.</p></div>
+</div>
+<p>An oracle phrase search shows how much headroom phrasing alone leaves a
+frozen policy &mdash; and that on LIBERO the policy attends to language only on
+tasks inside its finetuning set:</p>
+<div class="row">
+  <div><img src="assets/pi0_conditions.png" alt="pi0 conditions">
+       <p class="cap">&pi;<sub>0</sub>, 12 sealed Bridge tasks: oracle phrasing nearly
+       closes the in- vs out-of-distribution gap.</p></div>
+  <div><img src="assets/pi05_fourtier.png" alt="pi0.5 four tiers">
+       <p class="cap">&pi;<sub>0.5</sub>, LIBERO: adversarial phrasing costs 50 points
+       in-finetune and nothing measurable out-of-finetune.</p></div>
+</div>
+
+<h2>3&ensp;The method: LLM-distilled rephrasing rules</h2>
+<img src="assets/method.png" alt="method overview">
+<p>Score many phrasings of a few training tasks by rolling them out; have a
+large language model distill the scored phrasings into ten to twenty
+natural-language rephrasing rules; at deployment, rewrite each incoming
+instruction once under the rules, before it reaches the frozen policy. No
+retraining, no per-step verification, zero-shot to unseen tasks.</p>
+<img src="assets/rules_dashboard.png" alt="main results">
+<p class="cap">On twelve held-out Bridge tasks the rules improve the frozen
+&pi;<sub>0</sub> by 16&ndash;27% relative across adversarial, VLM-generated, and
+human-written phrasings; the pipeline replicates on &pi;<sub>0.5</sub> + LIBERO
+(93.6% &rarr; 97.8% in-finetune).</p>
+
+<h2>4&ensp;Sample rules</h2>
+<ul class="rules">
+  <li>&ldquo;Name every object by the shortest common word an ordinary person
+      would use &mdash; the everyday name, never a description, riddle, or
+      category phrase.&rdquo;</li>
+  <li>&ldquo;'onto' becomes 'on', 'into' becomes 'in'.&rdquo;</li>
+  <li>&ldquo;Never replace a specific name with a broader class or packaging
+      word ('ketchup' must not become 'sauce' or 'bottle').&rdquo;</li>
+  <li>&ldquo;Replace 'hot plate', 'hotplate', 'burner', 'cooktop' by 'stove',
+      whatever name the scene description uses for the appliance.&rdquo;</li>
 </ul>
-<div class="soon">More videos and materials are on the way.</div>
-<p>Prompts, distilled rulebooks, and the full set of significant single-edit
-swings are available in the <a href="https://anonymous.4open.science/r/vla-rephrasing-artifacts">companion repository</a>.</p>
+<p>More: <a href="rules.html">rule snapshots</a> &middot; complete rulebooks,
+prompts, and swing data in the
+<a href="https://anonymous.4open.science/r/vla-rephrasing-artifacts">companion repository</a>
+&middot; <a href="survey/index.html">the human-phrasing survey</a> (static replica,
+with the task clips respondents saw).</p>
+
 <footer>This page will be updated during the review period.</footer>
 </body>
 </html>
