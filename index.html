@@ -70,11 +70,12 @@ frozen policy:</p>
 
 <h2>3&ensp;The method: LLM-distilled rephrasing rules</h2>
 <img src="assets/method.png" alt="method overview">
-<p>Score many phrasings of a few training tasks by rolling them out; have a
+<p><strong>Our method:</strong> score many phrasings of a few training tasks by rolling them out; have a
 large language model distill the scored phrasings into ten to twenty
 natural-language rephrasing rules; at deployment, rewrite each incoming
 instruction once under the rules, before it reaches the frozen policy. No
 retraining, no per-step verification, zero-shot to unseen tasks.</p>
+<p><strong>Main results:</strong></p>
 <img src="assets/rules_dashboard.png" alt="main results">
 <p class="cap">On twelve held-out Bridge tasks the rules improve the frozen
 &pi;<sub>0</sub> by 16&ndash;27% relative across adversarial, VLM-generated, and
