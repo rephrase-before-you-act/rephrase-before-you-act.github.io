@@ -18,7 +18,8 @@
   .row { display: flex; gap: 1rem; flex-wrap: wrap; }
   .row > div { flex: 1 1 20rem; }
   .cap { font-size: .88rem; color: #555; margin-top: -0.4rem; }
-  .pair { font-size: .95rem; margin: .5rem 0; }
+  .pair { font-size: .95rem; margin: .7rem 0; display: flex; align-items: center; gap: .9rem; }
+  .pair img { width: 120px; height: auto; flex: none; border-radius: 4px; margin: 0; }
   .good { color: #3F6B52; font-weight: bold; }
   .bad { color: #A94E4E; font-weight: bold; }
   .hi { background: #d4f1d4; border-radius: 3px; padding: 0 .2em; }
@@ -39,12 +40,12 @@
 <p>A one-word edit to an instruction can move a VLA's success rate by tens of
 points. Measured over the same fixed scene layouts with common random
 seeds, so the wording is the only difference:</p>
-<p class="pair"><span class="good">69%</span> &ldquo;<span class="hi">purple eggplant</span> goes on the sponge&rdquo;
-&nbsp;vs.&nbsp; <span class="bad">8%</span> &ldquo;<span class="lo">eggplant</span> goes on the sponge&rdquo;</p>
-<p class="pair"><span class="good">69%</span> &ldquo;put the <span class="hi">pepsi</span> on the plate&rdquo;
-&nbsp;vs.&nbsp; <span class="bad">25%</span> &ldquo;put the <span class="lo">Pepsi</span> on the plate&rdquo;</p>
-<p class="pair"><span class="good">100%</span> &ldquo;<span class="hi">fire up</span> the stove&rdquo;
-&nbsp;vs.&nbsp; <span class="bad">6%</span> &ldquo;<span class="lo">turn on</span> the stove&rdquo;</p>
+<p class="pair"><img src="assets/scene_eggplant_sponge.jpg" alt="scene"><span><span class="good">69%</span> &ldquo;<span class="hi">purple eggplant</span> goes on the sponge&rdquo;
+&nbsp;vs.&nbsp; <span class="bad">8%</span> &ldquo;<span class="lo">eggplant</span> goes on the sponge&rdquo;</span></p>
+<p class="pair"><img src="assets/scene_pepsi_plate.jpg" alt="scene"><span><span class="good">69%</span> &ldquo;put the <span class="hi">pepsi</span> on the plate&rdquo;
+&nbsp;vs.&nbsp; <span class="bad">25%</span> &ldquo;put the <span class="lo">Pepsi</span> on the plate&rdquo;</span></p>
+<p class="pair"><img src="assets/scene_stove.jpg" alt="scene"><span><span class="good">100%</span> &ldquo;<span class="hi">fire up</span> the stove&rdquo;
+&nbsp;vs.&nbsp; <span class="bad">6%</span> &ldquo;<span class="lo">turn on</span> the stove&rdquo;</span></p>
 
 <h2>2&ensp;Measuring it: single-edit swings and oracle headroom</h2>
 <p>Single-edit swings: the largest significant swing per task and edit category
