@@ -21,6 +21,9 @@
   .pair { font-size: .95rem; margin: .5rem 0; }
   .good { color: #3F6B52; font-weight: bold; }
   .bad { color: #A94E4E; font-weight: bold; }
+  .hi { background: #d4f1d4; border-radius: 3px; padding: 0 .2em; }
+  .lo { background: #fad6d6; border-radius: 3px; padding: 0 .2em; }
+  .hi.gone { background: #fad6d6; color: #A94E4E; font-style: italic; }
   li { margin-bottom: .7rem; }
   .rules li { font-style: italic; }
   a { color: #7a4d0b; }
@@ -36,12 +39,12 @@
 <p>A one-word edit to an instruction can move a VLA's success rate by tens of
 points. Measured over the same fixed scene layouts with common random
 seeds, so the wording is the only difference:</p>
-<p class="pair"><span class="good">69%</span> &ldquo;purple eggplant goes on the sponge&rdquo;
-&nbsp;vs.&nbsp; <span class="bad">8%</span> &ldquo;eggplant goes on the sponge&rdquo;</p>
-<p class="pair"><span class="good">69%</span> &ldquo;put the pepsi on the plate&rdquo;
-&nbsp;vs.&nbsp; <span class="bad">25%</span> &ldquo;put the Pepsi on the plate&rdquo;</p>
-<p class="pair"><span class="good">100%</span> &ldquo;fire up the stove&rdquo;
-&nbsp;vs.&nbsp; <span class="bad">6%</span> &ldquo;turn on the stove&rdquo;</p>
+<p class="pair"><span class="good">69%</span> &ldquo;<span class="hi">purple</span> eggplant goes on the sponge&rdquo;
+&nbsp;vs.&nbsp; <span class="bad">8%</span> &ldquo;<span class="lo">&#8203;</span>eggplant goes on the sponge&rdquo; <span style="color:#777;font-size:.85em">(color word dropped)</span></p>
+<p class="pair"><span class="good">69%</span> &ldquo;put the <span class="hi">pepsi</span> on the plate&rdquo;
+&nbsp;vs.&nbsp; <span class="bad">25%</span> &ldquo;put the <span class="lo">Pepsi</span> on the plate&rdquo;</p>
+<p class="pair"><span class="good">100%</span> &ldquo;<span class="hi">fire up</span> the stove&rdquo;
+&nbsp;vs.&nbsp; <span class="bad">6%</span> &ldquo;<span class="lo">turn on</span> the stove&rdquo;</p>
 <div class="soon">Side-by-side rollout videos of these pairs are coming shortly.</div>
 
 <h2>2&ensp;Measuring it: single-edit swings and oracle headroom</h2>
