@@ -96,7 +96,7 @@ retraining, no per-step verification, zero-shot to unseen tasks.</p>
 <p>A commonly used, effective technique for reducing language sensitivity is to augment the training data by including VLM-generated rephrases of each task instruction. We build on this method: we pass task instructions through a VLM rephraser that is prompted with rephrasing rules. These rules are distilled from a set of rollout-based &ldquo;evidence&rdquo; by a reasoning model. The evidence consists of measurements of the VLA&rsquo;s success rate across various tasks and instruction rephrasings.</p>
 <img src="assets/pi0_human_ingredients.png" alt="what each ingredient buys on human phrasings">
 <p class="cap">Rollout success on 363 human-written phrasings of the 12 held-out Bridge tasks, 24 fixed layouts each; Claude as the rephraser; rules averaged over three distilled rulebooks.</p>
-<p><strong>Main results:</strong></p>
+<p><strong>Main results:</strong> We distill three kinds of rulebook, which differ only in the evidence the reasoning model sees. <strong>In-finetune</strong> rulebooks see rephrasings of tasks from the policy&rsquo;s finetuning data, scored by the action error against the expert trajectories (no rollouts), together with the finetuning instructions themselves. <strong>Out-of-finetune</strong> rulebooks see rephrasings of eight simulated tasks the policy was never finetuned on, scored by rollout success. <strong>Both</strong> sees the union. Each kind is distilled three times and the results are averaged.</p>
 <img src="assets/rules_dashboard.png" alt="main results">
 <p class="cap">On twelve held-out Bridge tasks the rules improve the frozen
 &pi;<sub>0</sub> by 16&ndash;27% relative across adversarial, VLM-generated, and
