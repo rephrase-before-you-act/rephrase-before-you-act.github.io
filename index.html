@@ -75,6 +75,8 @@ large language model distill the scored phrasings into ten to twenty
 natural-language rephrasing rules; at deployment, rewrite each incoming
 instruction once under the rules, before it reaches the frozen policy. No
 retraining, no per-step verification, zero-shot to unseen tasks.</p>
+<p><strong>What each ingredient buys</strong> on human-written phrasings (363 phrases over the 12 held-out Bridge tasks, 24 fixed layouts each): the rephrase-augmented finetune adds 2 points over the plain &pi;<sub>0</sub> finetune, a VLM rephraser with no rules adds 2 more, and our distilled rules add nearly 3 on top (Claude applier; out-of-finetune rulebooks averaged over three draws).</p>
+<img src="assets/pi0_human_ingredients.png" alt="what each ingredient buys on human phrasings">
 <p><strong>Main results:</strong></p>
 <img src="assets/rules_dashboard.png" alt="main results">
 <p class="cap">On twelve held-out Bridge tasks the rules improve the frozen
