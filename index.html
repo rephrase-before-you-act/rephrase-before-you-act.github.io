@@ -93,8 +93,9 @@ large language model distill the scored phrasings into ten to twenty
 natural-language rephrasing rules; at deployment, rewrite each incoming
 instruction once under the rules, before it reaches the frozen policy. No
 retraining, no per-step verification, zero-shot to unseen tasks.</p>
-<p><strong>What each ingredient buys</strong> on human-written phrasings (363 phrases over the 12 held-out Bridge tasks, 24 fixed layouts each): the rephrase-augmented finetune adds 2 points over the plain &pi;<sub>0</sub> finetune, almost all of it out-of-distribution; a VLM rephraser with no rules adds 2 more, almost all of it in-distribution; our distilled rules add nearly 3 on top, again out-of-distribution (Claude applier; out-of-finetune rulebooks averaged over three draws).</p>
+<p>A commonly used, effective technique for reducing language sensitivity is to augment the training data by including VLM-generated rephrases of each task instruction. We build on this method: we pass task instructions through a VLM rephraser that is prompted with rephrasing rules. These rules are distilled from a set of rollout-based &ldquo;evidence&rdquo; by a reasoning model. The evidence consists of measurements of the VLA&rsquo;s success rate across various tasks and instruction rephrasings.</p>
 <img src="assets/pi0_human_ingredients.png" alt="what each ingredient buys on human phrasings">
+<p class="cap">Rollout success on 363 human-written phrasings of the 12 held-out Bridge tasks, 24 fixed layouts each; Claude as the rephraser; rules averaged over three distilled rulebooks.</p>
 <p><strong>Main results:</strong></p>
 <img src="assets/rules_dashboard.png" alt="main results">
 <p class="cap">On twelve held-out Bridge tasks the rules improve the frozen
