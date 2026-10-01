@@ -20,6 +20,10 @@
   .cap { font-size: .88rem; color: #555; margin-top: -0.4rem; }
   .pair { font-size: .95rem; margin: .7rem 0; display: flex; align-items: center; gap: .9rem; }
   .pair img { width: 120px; height: auto; flex: none; border-radius: 4px; margin: 0; }
+  .grids { margin: 1.4rem 0 1.6rem; }
+  .grids video { width: 100%; display: block; border-radius: 6px; border: 1px solid #e2ddd0; margin: .35rem 0 1.4rem; background: #f7f6f3; }
+  .vlabel { font-size: .95rem; margin: 1.1rem 0 0; }
+  .vlabel .bench { color: #777; font-size: .85rem; margin-left: .5rem; white-space: nowrap; }
   .good { color: #3F6B52; font-weight: bold; }
   .bad { color: #A94E4E; font-weight: bold; }
   .hi { background: #d4f1d4; border-radius: 3px; padding: 0 .2em; }
@@ -46,6 +50,44 @@ seeds, so the wording is the only difference:</p>
 &nbsp;vs.&nbsp; <span class="bad">25%</span> &ldquo;put the <span class="lo">Pepsi</span> on the plate&rdquo;</span></p>
 <p class="pair"><img src="assets/scene_stove.jpg" alt="scene"><span><span class="good">100%</span> &ldquo;<span class="hi">fire up</span> the stove&rdquo;
 &nbsp;vs.&nbsp; <span class="bad">6%</span> &ldquo;<span class="lo">turn on</span> the stove&rdquo;</span></p>
+
+
+<div class="grids">
+<p>Eleven such pairs replayed as rollout grids: every cell is one scene layout, the winning phrase on the left and the losing phrase on the right under the same seed, and each cell is marked the moment its episode ends. The percentages are the measured rates from the full evaluation, so a replayed grid can differ from them by a cell or two.</p>
+<p class="vlabel"><span class="good">69%</span> &ldquo;put the <span class="hi">pepsi</span> on the plate&rdquo;
+&nbsp;vs.&nbsp; <span class="bad">25%</span> &ldquo;put the <span class="lo">Pepsi</span> on the plate&rdquo; <span class="bench">SIMPLER, 24 layouts</span></p>
+<video controls muted loop playsinline preload="metadata" poster="assets/videos/pair1_pepsi_on_plate.jpg" src="assets/videos/pair1_pepsi_on_plate.mp4"></video>
+<p class="vlabel"><span class="good">46%</span> &ldquo;Put the red soda <span class="hi">cylinder</span> on top of the black keyboard.&rdquo;
+&nbsp;vs.&nbsp; <span class="bad">4%</span> &ldquo;Put the red soda <span class="lo">can</span> on top of the black keyboard.&rdquo; <span class="bench">SIMPLER, 24 layouts</span></p>
+<video controls muted loop playsinline preload="metadata" poster="assets/videos/pair2_coke_can_on_keyboard.jpg" src="assets/videos/pair2_coke_can_on_keyboard.mp4"></video>
+<p class="vlabel"><span class="good">69%</span> &ldquo;<span class="hi">purple</span> eggplant goes on the sponge&rdquo;
+&nbsp;vs.&nbsp; <span class="bad">8%</span> &ldquo;eggplant goes on the sponge&rdquo; <span class="bench">SIMPLER, 24 layouts</span></p>
+<video controls muted loop playsinline preload="metadata" poster="assets/videos/pair3_eggplant_on_sponge.jpg" src="assets/videos/pair3_eggplant_on_sponge.mp4"></video>
+<p class="vlabel"><span class="good">100%</span> &ldquo;<span class="hi">fire up</span> the stove&rdquo;
+&nbsp;vs.&nbsp; <span class="bad">6%</span> &ldquo;<span class="lo">turn on</span> the stove&rdquo; <span class="bench">LIBERO, 24 initial states</span></p>
+<video controls muted loop playsinline preload="metadata" poster="assets/videos/pair4_libero_90_44.jpg" src="assets/videos/pair4_libero_90_44.mp4"></video>
+<p class="vlabel"><span class="good">100%</span> &ldquo;switch on the <span class="hi">stove</span>&rdquo;
+&nbsp;vs.&nbsp; <span class="bad">2%</span> &ldquo;switch on the <span class="lo">hot plate</span>&rdquo; <span class="bench">LIBERO, 24 initial states</span></p>
+<video controls muted loop playsinline preload="metadata" poster="assets/videos/pair5_libero_goal_7.jpg" src="assets/videos/pair5_libero_goal_7.mp4"></video>
+<p class="vlabel"><span class="good">74%</span> &ldquo;place the red cola can inside the white <span class="hi">container</span>&rdquo;
+&nbsp;vs.&nbsp; <span class="bad">32%</span> &ldquo;place the red cola can inside the white <span class="lo">ramekin</span>&rdquo; <span class="bench">SIMPLER, 24 layouts</span></p>
+<video controls muted loop playsinline preload="metadata" poster="assets/videos/pair6_coke_can_on_ramekin.jpg" src="assets/videos/pair6_coke_can_on_ramekin.mp4"></video>
+<p class="vlabel"><span class="good">54%</span> &ldquo;put the eggplant on the <span class="hi">black</span> keyboard&rdquo;
+&nbsp;vs.&nbsp; <span class="bad">12%</span> &ldquo;put the eggplant on the keyboard&rdquo; <span class="bench">SIMPLER, 24 layouts</span></p>
+<video controls muted loop playsinline preload="metadata" poster="assets/videos/pair7_eggplant_on_keyboard.jpg" src="assets/videos/pair7_eggplant_on_keyboard.mp4"></video>
+<p class="vlabel"><span class="good">78%</span> &ldquo;<span class="hi">place</span> the green cube into the dish&rdquo;
+&nbsp;vs.&nbsp; <span class="bad">40%</span> &ldquo;<span class="lo">put</span> the green cube into the dish&rdquo; <span class="bench">SIMPLER, 24 layouts</span></p>
+<video controls muted loop playsinline preload="metadata" poster="assets/videos/pair8_cube_on_plate.jpg" src="assets/videos/pair8_cube_on_plate.mp4"></video>
+<p class="vlabel"><span class="good">36%</span> &ldquo;put the bowl on top of the cabinet&rdquo;
+&nbsp;vs.&nbsp; <span class="bad">10%</span> &ldquo;put the <span class="lo">grey</span> bowl on top of the cabinet&rdquo; <span class="bench">LIBERO, 24 initial states</span></p>
+<video controls muted loop playsinline preload="metadata" poster="assets/videos/pair9_libero_90_31.jpg" src="assets/videos/pair9_libero_90_31.mp4"></video>
+<p class="vlabel"><span class="good">71%</span> &ldquo;set the purple <span class="hi">eggplant</span> on the yellow and green sponge&rdquo;
+&nbsp;vs.&nbsp; <span class="bad">26%</span> &ldquo;set the purple <span class="lo">thing</span> on the yellow and green sponge&rdquo; <span class="bench">SIMPLER, 24 layouts</span></p>
+<video controls muted loop playsinline preload="metadata" poster="assets/videos/pair10_eggplant_on_sponge.jpg" src="assets/videos/pair10_eggplant_on_sponge.mp4"></video>
+<p class="vlabel"><span class="good">32%</span> &ldquo;put eggplant on keyboard&rdquo;
+&nbsp;vs.&nbsp; <span class="bad">12%</span> &ldquo;put <span class="lo">the</span> eggplant on <span class="lo">the</span> keyboard&rdquo; <span class="bench">SIMPLER, 24 layouts</span></p>
+<video controls muted loop playsinline preload="metadata" poster="assets/videos/pair11_eggplant_on_keyboard.jpg" src="assets/videos/pair11_eggplant_on_keyboard.mp4"></video>
+</div>
 
 <h2>2&ensp;Measuring it: single-edit swings and oracle headroom</h2>
 <p>Single-edit swings: the largest significant swing per task and edit category
